@@ -1,0 +1,31 @@
+<html>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="scramble.js"></script>
+
+	<body>
+	<div class="foo">apple</div>
+	<div class="bar">banana</div>
+	<div class="reverse">cat</div>
+	<div class="shuffle">the quick brown fox jumps over the lazy dog</div>
+	<div class="redact">the quick brown fox jumps over the lazy dog</div>
+
+	<script>
+	$(".foo").scramble()
+	$(".bar").scramble({foo:"foobar"})
+	$(".reverse").scramble({
+		type: 'reverse'
+	})
+	$(".shuffle").scramble({
+		type: 'shuffle'
+	})
+	$(".redact").scramble({
+		type: 'redact',
+		redactChar: '!'
+	})
+
+	</script>
+
+	</body>
+
+
+</html>
