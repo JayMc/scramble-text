@@ -16,6 +16,10 @@ $(".words").scramble({
 	})
 </script>
 ```
+Outputs:
+the quick brown xbo jumps over the lazy wbe
+
+Note: fox and dog are scrambled
 
 ## Options
 ### type: 
