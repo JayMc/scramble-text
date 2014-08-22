@@ -1,7 +1,8 @@
 scramble-text jQuery plugin
 ===========================
 
-Given a text string replaces characters in different ways: swap, randomize, reverse, redact
+Given a text string replaces characters until the mouse moves of the text revealing the real text.
+Text can be scrambled in different ways: swap, shuffle, reverse, redact.
 
 ## Usage
 
@@ -17,9 +18,9 @@ $(".words").scramble({
 </script>
 ```
 Outputs:
-the quick brown xbo jumps over the lazy wbe
-
+__the quick brown xbo jumps over the lazy wbe__
 Note: fox and dog are scrambled
+When the user moves the mouse over the text it reveals: __the quick brown fox jumps over the lazy dog__
 
 ## Options
 ### type: 
@@ -29,10 +30,10 @@ Note: fox and dog are scrambled
 - redact: blocks out all characters with the same character
 
 ### hashmap:
-used with swap type to replace character in position
+Used with swap type to replace character in position.
 
 ### words:
-the words to scramble, if left empty will scramble all words.
+The words to scramble, if left empty will scramble all words.
 
 ### redactChar
-the character to use in redact, default is question mark.
+The character to use in redact, default is question mark.
