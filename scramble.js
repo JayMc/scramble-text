@@ -9,28 +9,43 @@
 $.scramble = {
 	    id: 'scramble',
 	    version: '0.1',
+	    aurthor: 'Jason McIver',
 	    defaults: { // default settings
 	        redactChar: '?',
 	        hashmap: 'qazwsxedcrfvtgbyhnujmikolp 0192837465',
 	        type: 'swap',
-	        targetWords: [] //if empty apply to entire text, else only apply to words in this array
+	        words: [] //if empty apply to entire text, else only apply to words in this array
+	    },
+	    options: {
+
 	    },
 	    //hashmap: 'qazwsxedcrfvtgbyhnujmikolp 0192837465',
 	        alpha: 'abcdefghihklmnopqrstuvwxyz 1234567890',
 
+		selectWord: function($, text, opts){
+			newText = '';
+			$.each(text.split(' '),function(index, word){
+				if($.inArray(word, opts.words) !== -1){
+					newText = newText+' ' + $.scramble.mask(opts.words[$.inArray(word, opts.words)], opts);
+				}else{
+					newText = newText+' ' + word;
+				}
+			})
+			return newText;
+	    },
 	    mask: function(text, opts){
 	    	switch(opts.type){
 				case 'swap':
-					return this.swap(text);
+					return this.swap(text, opts);
 					break;
 				case 'reverse':
-					return this.reverse(text);
+					return this.reverse(text, opts);
 					break;
 				case 'shuffle':
 					return this.shuffle(text);
 					break;
 				case 'redact':
-					return this.redact(text, opts.redactChar);
+					return this.redact(text, opts);
 					break;
 				default:
 					return this.swap(text);
@@ -38,9 +53,12 @@ $.scramble = {
 			}
 
 	    },
+
+
+
 	    //cat = zqj
-	    swap: function(text){
-			var hashmapArray = this.defaults.hashmap.split('');
+	    swap: function(text, opts){
+			var hashmapArray = opts.hashmap.split('');
 			var secretArray = text.split('');
 	    	var mask = '';
 
@@ -77,12 +95,12 @@ $.scramble = {
 	    },
 
 	    //blocks all characters, cat = ???
-	    redact: function(text, redactChar){
+	    redact: function(text, opts){
 	    	var secretArray = text.split('');
 	    	var mask = '';
 
 	    	for (var i = 0; i < secretArray.length; i++) {
-				mask = mask + redactChar;
+				mask = mask + opts.redactChar;
 			}
 			return mask;
 	    }
@@ -94,20 +112,25 @@ $.scramble = {
 	    $.fn.extend({
 
 	        scramble: function (params) {
-	            //Merge default and user parameters
-	            var otherGeneralVars = 'example';
+
+			    
 
 	            return this.each(function () {
 	            	//create reference to self
 	                var $t = $(this);
 	                //combine defaults and defined options
 	                var opts = $.extend({},$.scramble.defaults, params);
-
+	                
 	                //store real text string before any changes are made, will be used to reveal text on mouseenter
 					$t.txt = $(this).text();
 
 					//initial scramble
-					$(this).text($.scramble.mask($t.txt, opts));
+					if(opts.words.length !== 0){
+						$(this).text($.scramble.selectWord($, $t.txt, opts));
+
+					}else{
+						$(this).text($.scramble.mask($t.txt, opts));
+					}
 
 					//reveal real text
 					$(this).mouseenter(function(){
@@ -116,7 +139,12 @@ $.scramble = {
 
 					//scramble text again
 					$(this).mouseleave(function(){
-						$(this).text($.scramble.mask($t.txt, opts));
+						if(opts.words.length !== 0){
+							$(this).text($.scramble.selectWord($, $t.txt, opts));
+
+						}else{
+							$(this).text($.scramble.mask($t.txt, opts));
+						}
 					})
 
 	            });

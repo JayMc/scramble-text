@@ -4,13 +4,18 @@
 
 	<body>
 	<div class="foo">apple</div>
+	<div class="foo2">apple</div>
 	<div class="bar">banana</div>
 	<div class="reverse">cat</div>
 	<div class="shuffle">the quick brown fox jumps over the lazy dog</div>
 	<div class="redact">the quick brown fox jumps over the lazy dog</div>
+	<div class="swap words">the quick brown fox jumps over the lazy dog</div>
 
 	<script>
 	$(".foo").scramble()
+	$(".foo2").scramble({
+		hashmap: 'zxcvbnmasdfghjklqwertyuiop0987654321'
+	})
 	$(".bar").scramble({foo:"foobar"})
 	$(".reverse").scramble({
 		type: 'reverse'
@@ -20,7 +25,12 @@
 	})
 	$(".redact").scramble({
 		type: 'redact',
-		redactChar: '!'
+		redactChar: '!',
+		words: ['dog', 'fox']
+	})
+	$(".swap.words").scramble({
+		type: 'swap',
+		words: ['dog', 'fox']
 	})
 
 	</script>
