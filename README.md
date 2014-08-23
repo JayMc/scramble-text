@@ -35,5 +35,5 @@ Used with swap type to replace character in position.
 ### words:
 The words to scramble, if left empty will scramble all words.
 
-### redactChar
+### redactChar:
 The character to use in redact, default is question mark.
