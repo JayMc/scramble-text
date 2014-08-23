@@ -1,7 +1,7 @@
 scramble-text jQuery plugin
 ===========================
 
-Given a text string replaces characters until the mouse moves of the text revealing the real text.
+Given a text string replaces characters until the mouse hovers over the text revealing the real text.
 Text can be scrambled in different ways: swap, shuffle, reverse, redact.
 
 ## Usage
