@@ -1,33 +1,111 @@
 <html>
+	<style type="text/css">
+	#folder {
+		background-image: url('assets/folder.png');
+		width: 596px;
+		height: 770px;
+	}
+	.p1 {
+		position: relative;
+		left: 100px;
+		top: 270px;
+		width: 430px;
+		word-wrap: break-word;
+		color: #333;
+		font-size: 14pt;		
+	}
+	.p2 {
+		position: relative;
+		left: 100px;
+		top: 280px;
+		width: 430px;
+		word-wrap: break-word;
+		color: #333;
+		font-size: 14pt;
+	}
+	#ccNumber{
+		position: relative;
+		/*height: 770px;*/
+		left: 65px;
+		top: 560px;
+		color: #fff;
+		font-size: 16pt;
+		
+		/* Rotation */
+		/* Safari */
+		-webkit-transform: rotate(-12deg);
+		/* Firefox */
+		-moz-transform: rotate(-12deg);
+		/* IE */
+		-ms-transform: rotate(-12deg);
+		/* Opera */
+		-o-transform: rotate(-12deg);
+	}
+	</style>
+	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<script src="scramble.js"></script>
 
 	<body>
+	<h2>Scramble text jQuery plugin</h2>
+	<h3>Example:</h3>
+	<p>Sensitive words have been masked in different ways with scramble-text, to uncover the real text use the mouse to hover over the paragraph.</p>
+	<div id="folder">
+		<p id="ccNumber">1234 5678 9102 3456</p>
+		<p class="p1">Your Mission if you choose to accept is to capture the intelligence inside the briefcase in possession of Mr. White</p>
+		<p class="p2">Use the credit card attached to book a room into the same hotel as Mr White with the pin number of 4321</p>
+	</div>
+
+	<h3>More examples:</h3>
 	<div class="foo">apple</div>
 	<div class="foo2">apple</div>
 	<div class="bar">banana</div>
-	<div class="reverse">cat</div>
+	<div class="reverse">cat dog</div>
 	<div class="shuffle">the quick brown fox jumps over the lazy dog</div>
 	<div class="redact">the quick brown fox jumps over the lazy dog</div>
 	<div class="swap words">the quick brown fox jumps over the lazy dog</div>
 
 	<script>
+	//Topsecret example
+	$(".p1").scramble({
+		type: 'shuffle',
+		words: ['briefcase', 'intelligence', 'White']
+	})
+	$(".p2").scramble({
+		type: 'redact',
+		redactChar: '#',
+		words: ['4321', 'White']
+	})
+	$("#ccNumber").scramble({
+		type: 'swap'
+	})
+
+	//more examples
 	$(".foo").scramble()
+
+	//provide own hasmap
 	$(".foo2").scramble({
 		hashmap: 'zxcvbnmasdfghjklqwertyuiop0987654321'
 	})
-	$(".bar").scramble({foo:"foobar"})
+
+	//reverse order of characters
 	$(".reverse").scramble({
 		type: 'reverse'
 	})
+
+	//jumble characters
 	$(".shuffle").scramble({
 		type: 'shuffle'
 	})
+
+	//replace all characters with same character, only targeting dog and fox
 	$(".redact").scramble({
 		type: 'redact',
 		redactChar: '!',
 		words: ['dog', 'fox']
 	})
+
+	//swap characters in same position in hashmap, only targeting dog and fox
 	$(".swap.words").scramble({
 		type: 'swap',
 		words: ['dog', 'fox']
