@@ -11,8 +11,8 @@ $.scramble = {
 	    version: '0.1',
 	    aurthor: 'Jason McIver',
 	    defaults: { // default settings
-	        redactChar: '?',
-	        hashmap: 'qazwsxedcrfvtgbyhnujmikolp 0192837465',
+	        redactChar: '*',
+	        hashmap: 'qazwsxedcrfvtgbyhnujmikolpQWERTYUIOPASDFGHJKLZXCVBNM 0192837465',
 	        type: 'swap',
 	        words: [] //if empty apply to entire text, else only apply to words in this array
 	    },
@@ -20,7 +20,7 @@ $.scramble = {
 
 	    },
 	    //hashmap: 'qazwsxedcrfvtgbyhnujmikolp 0192837465',
-	        alpha: 'abcdefghihklmnopqrstuvwxyz 1234567890',
+	        alpha: 'abcdefghihklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890',
 
 		selectWord: function($, text, opts){
 			newText = '';
